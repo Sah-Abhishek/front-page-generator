@@ -199,7 +199,7 @@ const PdfGenerator = () => {
 
                 />
 
-                <div className="flex flex-col md:flex-row w-full  rounded">
+                <div className="flex flex-col sm:flex-row md:flex-row w-full  rounded">
                     {/* SUBMITTED BY Section */}
                     <div className="w-full lg:w-1/2 p-40 pt-10">
                         <div className="flex flex-col">
@@ -240,7 +240,7 @@ const PdfGenerator = () => {
                     </div>
 
                     {/* SUBMITTED TO Section */}
-                    <div className="w-full lg:w-1/3 p-20 pt-10">
+                    <div className="w-full md:1/2 lg:w-1/3 p-20 pt-10">
 
                         <div className="flex flex-col">
                             <p className="underline text-2xl pb-4 font-bold">SUBMITTED TO</p>

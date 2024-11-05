@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Add this to your CSS */
+@media screen and (max-width: 768px) {
+    body {
+      width: 100vw; /* Forces the content to fit the full width on mobile devices */
+      overflow-x: scroll; /* Ensures horizontal scroll is available */
+    }
+    
+    /* Prevent mobile-specific styling from taking effect */
+    .mobile-only {
+      display: block !important;
+    }
+    
+    /* Override any mobile-specific styles */
+    .mobile-menu {
+      display: block !important; /* Show desktop navigation or menu */
+    }
+  }
