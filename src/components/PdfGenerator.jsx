@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { jsPDF } from "jspdf";
-import image1 from "../assets/header.png"; // Import the image
+import image1 from "../assets/header2.png"; // Import the image
 
 const PdfGenerator = () => {
     const [text, setText] = useState(""); // State for main text input
@@ -9,6 +9,8 @@ const PdfGenerator = () => {
     const [rollNo, setRollNo] = useState('');
     const [stClass, setStClass] = useState('')
     const [stBranch, setStBranch] = useState('')
+    const [fullBranch, setFullBranch] = useState('BACHELOR OF TECHNOLOGY - CSE (IOT)');
+    const [session, setSession] = useState('(2023-2024)')
 
     // Handle changes in student name input
     const handleStudentNameChange = (e) => {
@@ -32,8 +34,8 @@ const PdfGenerator = () => {
     // Generate PDF with student and teacher names under "SUBMITTED BY :-" and "SUBMITTED TO :-"
     const generatePdf = () => {
         const doc = new jsPDF();
-        const imageWidth = 180; // Set the width of the image
-        const imageHeight = 160; // Set the height of the image
+        const imageWidth = 200; // Set the width of the image
+        const imageHeight = 115; // Set the height of the image
 
         // Get the page width to calculate the image's X position for centering
         const pageWidth = doc.internal.pageSize.getWidth();
@@ -41,6 +43,38 @@ const PdfGenerator = () => {
 
         // Add the image to the PDF (from the imported image), centered horizontally
         doc.addImage(image1, "PNG", imageXPos, 10, imageWidth, imageHeight); // Adjust the size and position as needed
+
+        const fullBranchFontSize = 22; // Font size for fullBranch text
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(fullBranchFontSize);
+
+        // Calculate the width of the fullBranch text
+        const fullBranchTextWidth = doc.getStringUnitWidth(fullBranch) * doc.internal.getFontSize() / doc.internal.scaleFactor;
+        const fullBranchXPos = (pageWidth - fullBranchTextWidth) / 2; // Center the fullBranch text horizontally
+
+        // Add the fullBranch text below the main text (adjust Y position)
+        doc.text(fullBranch, fullBranchXPos, imageHeight + 20);
+
+        const sessionTextWidth = doc.getStringUnitWidth(session) * doc.internal.getFontSize() / doc.internal.scaleFactor;
+        const sessionXPos = (pageWidth - sessionTextWidth) / 2; // Center the fullBranch text horizontally
+
+
+        doc.text(session, sessionXPos, imageHeight + 30);
+
+        // Practical File
+        const practicalFiletextwidth = doc.getStringUnitWidth("Practical File") * doc.internal.getFontSize() / doc.internal.scaleFactor;
+        const practicalFileXPos = (pageWidth - practicalFiletextwidth) / 2; // Center the fullBranch text horizontally
+
+
+
+        doc.text("PRACTICAL FILE", practicalFileXPos - 10, imageHeight + 45);
+
+        const underlineYPos = imageHeight + 47; // Set Y position for the underline just below the text
+        doc.setDrawColor(0, 0, 0); // Set the color for the underline (black)
+        doc.setLineWidth(0.5); // Set the line width for the underline
+
+        doc.line(practicalFileXPos - 10, underlineYPos, practicalFileXPos + practicalFiletextwidth + 8 , underlineYPos);
+
 
         // Set a larger font size for the main text (e.g., 24 points)
         const fontSize = 24;
@@ -51,13 +85,15 @@ const PdfGenerator = () => {
         const textWidth = doc.getStringUnitWidth(text) * doc.internal.getFontSize() / doc.internal.scaleFactor;
         const xPos = (pageWidth - textWidth) / 2; // Center the text horizontally
 
+
+
         // Add the main text below the image
-        doc.text(text, xPos, imageHeight + 20); // Adjust Y position to ensure it doesn’t overlap with the image
+        doc.text(text, xPos, imageHeight + 60); // Adjust Y position to ensure it doesn’t overlap with the image
 
         // Set the position for "SUBMITTED BY :-"
         const submittedByText = "SUBMITTED BY :-";
         const submittedByXPos = 10; // X position for "SUBMITTED BY :-"
-        const submittedByYPos = imageHeight + 35; // Y position for both texts
+        const submittedByYPos = imageHeight + 75; // Y position for both texts
 
         // Add "SUBMITTED BY :-"
         doc.text(submittedByText, submittedByXPos, submittedByYPos);
@@ -141,13 +177,29 @@ const PdfGenerator = () => {
             </div>
 
             {/* Real-time Text Input for the user to enter main text */}
-            <textarea
+            <input
                 value={text}
                 onChange={(e) => setText(e.target.value)}
                 placeholder="Enter text to appear below the image"
                 rows="4"
                 className="mb-4 p-2 w-80 border border-gray-300 rounded"
             />
+            <input
+                value={fullBranch}
+                onChange={(e) => setFullBranch(e.target.value)}
+                // placeholder="Enter text to appear below the image"
+                rows="4"
+                className="mb-4 p-2 w-80 border border-gray-300 rounded"
+            />
+            <input
+                value={session}
+                onChange={(e) => setSession(e.target.value)}
+                // placeholder="Enter text to appear below the image"
+                rows="4"
+                className="mb-4 p-2 w-80 border border-gray-300 rounded"
+            />
+
+
 
             {/* Real-time Inputs for Student's and Teacher's Names */}
             <input
