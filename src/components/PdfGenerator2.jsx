@@ -163,10 +163,10 @@ const PdfGenerator = () => {
     };
 
     return (
-        <div className="flex flex-col items-center justify-center p-6 bg-gray-200">
+        <div className="flex flex-col items-center justify-center p-6 ">
             <h1 className="text-2xl font-bold mb-4">Generate PDF with Names</h1>
 
-            <div className="bg-white h-auto w-full md:w-[1190px] max-w-full flex flex-col items-center">
+            <div className="bg-white h-auto w-full md:w-[1190px] max-w-full flex flex-col items-center border border-black rounded-2xl p-4">
                 <div className="w-full mb-4">
                     <img src={image1} alt="Header" className="w-full h-auto max-w-[500px] mx-auto object-contain" />
                 </div>
