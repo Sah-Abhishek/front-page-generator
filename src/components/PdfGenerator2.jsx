@@ -141,8 +141,8 @@ const PdfGenerator = () => {
         doc.setFontSize(22);
         doc.text(teacherName || "Teacher's Name", submittedToXPos, teacherNameYPos); // Display the teacher's name
         doc.text("(ASST. PROFESSOR)", submittedToXPos, teacherNameYPos + 12); // Display the teacher's name
-        doc.text(stClassSubmittedTo || "Class", submittedToXPos, teacherNameYPos + 24); // Display the class for teacher
-        doc.text(stBranchSubmittedTo || "CSE-IOT", submittedToXPos, teacherNameYPos + 36); // Display the branch for teacher
+        // doc.text(stClassSubmittedTo || "Class", submittedToXPos, teacherNameYPos + 24); // Display the class for teacher
+        doc.text(stBranchSubmittedTo || "CSE-IOT", submittedToXPos, teacherNameYPos + 24); // Display the branch for teacher
 
         const addressText1st = "5th Km Stone Delhi, Meerut Rd, Near Raj Nagar Extension Road,";
         const addressText2nd = "Ghaziabad, Uttar Pradesh 201003";
