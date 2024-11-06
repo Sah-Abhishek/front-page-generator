@@ -80,7 +80,8 @@ const AddFooter = () => {
       <div className="flex flex-col justify-center items-center  mb-4 border border-black rounded-2xl m-4 p-4">
         <h1 className='text-4xl font-bold mb-4'>PDF Footer Editor</h1>
         <div className='mb-4'>
-          <input type="file" accept="application/pdf" onChange={handleFileChange} />
+        <label class="block mb-2 text-sm font-medium text-gray-900" for="large_size">Large file input</label>
+        <input onChange={handleFileChange} class="block w-full text-lg text-gray-900 border border-gray-500 rounded-lg cursor-pointer bg-gray-50 focus:outline-none   " id="large_size" type="file"/>
         </div>
         <div className='mb-4'>
           <label>Name: </label>
